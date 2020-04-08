@@ -25,7 +25,10 @@ From: ubuntu:18.04
         build-essential \
         software-properties-common \
         apt-transport-https \
-        locales
+        locales \
+        libxml2-dev \
+        libssl-dev \
+        libssl1.0-dev
     
     # Update locales
     DEBIAN_FRONTEND=noninteractive  apt-get install tzdata
