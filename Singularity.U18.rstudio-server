@@ -53,7 +53,7 @@ From: Xentrics/jupyter-r-base:r3.6.3
   rm -f rstudio-server.deb
 
   # R package specific libraries
-  apt-get install -y libcurl4-gnutls-dev libgit2-dev libopenblas-dev r-base-core libfontconfig1-dev
+  apt-get install -y libcurl4-gnutls-dev libgit2-dev libopenblas-dev r-base-core libfontconfig1-dev libcairo2-dev
   apt-get install -y openssh-client openssh-server libssh-dev wget vim git gfortran autoconf pandoc qpdf libssh2-1-dev
 
   # Clean up
