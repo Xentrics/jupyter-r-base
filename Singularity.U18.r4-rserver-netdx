@@ -1,0 +1,56 @@
+#BootStrap: shub
+#From: Xentrics/jupyter-r-base:r4-rserver
+Bootstrap: localimage
+From: Singularity.U18.r4-rserver.sif
+
+%labels
+
+  LICENSE Copyright 2020 Bastian Seelbinder, 
+     Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"),
+     to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+     and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above
+     copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. 
+  Maintainer Bastian Seelbinder
+
+%help
+  This will run RStudio Server
+
+%apprun rserver
+  exec rserver "${@}"
+
+%runscript
+  exec rserver "${@}"
+
+%environment
+  export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
+  export JRE_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre
+  export PATH=/usr/lib/rstudio-server/bin:${PATH}:$JAVA_HOME
+  export LC_ALL=C
+
+%post
+  # to solve the "locale.Error: unsupported locale setting" error [https://stackoverflow.com/questions/14547631/python-locale-error-unsupported-locale-setting ]
+  export LC_ALL=C
+  
+  apt-get update
+
+  # Install Java 8
+  apt-get install -y openjdk-8-jdk openjdk-8-jre
+  update-java-alternatives -s java-1.8.0-openjdk-amd64
+  export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
+  export JRE_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre
+
+  # Install Cytoscape
+  wget https://github.com/cytoscape/cytoscape/releases/download/3.7.2/Cytoscape_3_7_2_unix.sh
+  chmod u+x Cytoscape*
+  sh Cytoscape* -q
+
+  # Install R packages
+  export R_LIBS_USER="/usr/local/lib/R/site-library" # make sure packages go here
+  /usr/local/bin/R --vanilla -e ".libPaths()" # show the path to the R libraries
+  /usr/local/bin/R --vanilla -e 'install.packages("BiocManager", repos="https://cloud.r-project.org")'
+  /usr/local/bin/R --vanilla -e 'BiocManager::install(c("tidyverse", "magrittr", "readxl", "writexl"))'
+  /usr/local/bin/R --vanilla -e 'BiocManager::install("netDx")'
+  
+  # Clean up
+  rm -rf /var/lib/apt/lists/*
+
