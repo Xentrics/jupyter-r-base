@@ -1,7 +1,7 @@
-#BootStrap: shub
-#From: Xentrics/jupyter-r-base:r4
-Bootstrap: localimage
-From: Singularity.r4.sif
+BootStrap: shub
+From: Xentrics/jupyter-r-base:r4
+#Bootstrap: localimage
+#From: Singularity.r4.sif
 
 %labels
 
