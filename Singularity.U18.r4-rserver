@@ -23,9 +23,6 @@ From: Xentrics/jupyter-r-base:r4
   exec rserver "${@}"
 
 %environment
-  export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-  export JRE_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
-  export PATH=/usr/lib/rstudio-server/bin:${PATH}:$JAVA_HOME
   export LC_ALL=C
 
 %post
