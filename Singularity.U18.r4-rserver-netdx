@@ -34,6 +34,7 @@ From: Xentrics/jupyter-r-base:u18.r4-rserver
   wget https://github.com/cytoscape/cytoscape/releases/download/3.8.0/Cytoscape_3_8_0_unix.sh
   chmod u+x Cytoscape*
   sh Cytoscape* -q
+  rm Cytoscape_3_8_0_unix.sh
 
   # Install R packages
   export R_LIBS_USER="/usr/local/lib/R/site-library" # make sure packages go here
