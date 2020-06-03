@@ -3,6 +3,11 @@ From: Xentrics/jupyter-r-base:r3.6.3
 
 
 %labels
+    LICENSE Copyright 2020 Bastian Seelbinder, 
+     Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"),
+     to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+     and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above
+     copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. 
     Maintainer Bastian Seelbinder
 
 %post
@@ -32,6 +37,7 @@ From: Xentrics/jupyter-r-base:r3.6.3
     pip3 install jupyter jupyterlab ipykernel scipy numpy pandas matplotlib
     
     # install R jupyter knerl
+    export R_LIBS_USER="/usr/local/lib/R/site-library" # make sure packages go here
     R --vanilla -e 'install.packages("BiocManager", repos="https://cloud.r-project.org")'
     R --vanilla -e 'BiocManager::install("devtools")'
     R --vanilla -e 'devtools::install_github("IRkernel/IRkernel")'
