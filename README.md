@@ -8,3 +8,7 @@ To change the port to 5555, just add "www.port=5555" to "rstudio_conf/rserver.co
 
 singularity -B rstudio_conf:/etc/rstudio Xentrics/jupyter-r-base:rsudio-erver
 
+Build and tested on SLES 12
+
+# TODO
+- Install libgtk3-nocsd0 to fix ld issues on Ubuntu host
