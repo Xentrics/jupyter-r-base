@@ -33,7 +33,9 @@ From: ubuntu:18.04
         pcre2-utils \
         libxml2-dev \
         libssl-dev \
-        libcurl4-openssl-dev
+        libcurl4-openssl-dev \
+        libgtk3-nocsd0 \
+        gtk3-nocsd
     
     # Update locales
     DEBIAN_FRONTEND=noninteractive  apt-get install tzdata
