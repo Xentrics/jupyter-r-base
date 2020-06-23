@@ -16,10 +16,10 @@ From: Xentrics/jupyter-r-base:u18.r4-rserver
   This will run RStudio Server
 
 %apprun rserver
-  exec rserver "${@}"
+  exec /usr/lib/rstudio-server/bin/rserver "${@}"
 
 %runscript
-  exec rserver "${@}"
+  exec /usr/lib/rstudio-server/bin/rserver "${@}"
 
 %environment
   export LC_ALL=C
