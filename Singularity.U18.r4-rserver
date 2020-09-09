@@ -48,6 +48,7 @@ From: Xentrics/jupyter-r-base:r4
   apt-get install -y python3-pip
   apt-get install -y nano git cmake gfortran curl wget autoconf bzip2 libtool libtool-bin sudo             # "sudo" is not installed by default in containers like docker, singularity
   apt-get install -y cryptsetup
+  apt-get install -y libgtk3-nocsd0
   
   # Software versions
   export RSTUDIO_VERSION=1.2.5019
