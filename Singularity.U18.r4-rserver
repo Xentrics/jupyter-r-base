@@ -23,11 +23,13 @@ From: Xentrics/jupyter-r-base:r4
   exec /usr/lib/rstudio-server/bin/rserver "${@}"
 
 %environment
-  export LC_ALL=C
+  export LC_ALL=C.UTF-8
+  export LANG=C.UTF-8
 
 %post
   # to solve the "locale.Error: unsupported locale setting" error [https://stackoverflow.com/questions/14547631/python-locale-error-unsupported-locale-setting ]
-  export LC_ALL=C
+  export LC_ALL=C.UTF-8
+  export LANG=C.UTF-8
   
   # select default keyboard layout
   echo "XKBMODEL='pc105'" >> /etc/default/keyboard
