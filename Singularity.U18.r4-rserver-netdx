@@ -22,13 +22,19 @@ From: Xentrics/jupyter-r-base:u18.r4-rserver
   exec /usr/lib/rstudio-server/bin/rserver "${@}"
 
 %environment
-  export LC_ALL=C
+  export LC_ALL=C.UTF-8
+  export LANG=C.UTF-8
 
 %post
   # to solve the "locale.Error: unsupported locale setting" error [https://stackoverflow.com/questions/14547631/python-locale-error-unsupported-locale-setting ]
-  export LC_ALL=C
+  export LC_ALL=C.UTF-8
+  export LANG=C.UTF-8
   
+  # install additional dependencies
   apt-get update
+  apt-get install -y libgtk3-nocsd0
+  apt-get install -y libzmq3-dev   # required by clustermq
+
 
   # Install Cytoscape
   wget https://github.com/cytoscape/cytoscape/releases/download/3.8.0/Cytoscape_3_8_0_unix.sh
@@ -39,9 +45,9 @@ From: Xentrics/jupyter-r-base:u18.r4-rserver
   # Install R packages
   export R_LIBS_USER="/usr/local/lib/R/site-library" # make sure packages go here
   /usr/local/bin/R --vanilla -e ".libPaths()" # show the path to the R libraries
-  /usr/local/bin/R --vanilla -e 'install.packages("BiocManager", repos="https://cloud.r-project.org")'
-  /usr/local/bin/R --vanilla -e 'BiocManager::install(c("tidyverse", "magrittr", "readxl", "writexl"))'
-  /usr/local/bin/R --vanilla -e 'BiocManager::install("netDx")'
+  /usr/local/bin/R --vanilla -e 'install.packages(c("clustermq", "future", "tidyverse", "magrittr", "readxl", "writexl"), repos="https://cloud.r-project.org", Ncpus = 10)'
+  /usr/local/bin/R --vanilla -e 'install.packages("BiocManager", repos="https://cloud.r-project.org", Ncpus = 10)'
+  /usr/local/bin/R --vanilla -e 'BiocManager::install("netDx", Ncpus = 10)'
   
   # Clean up
   rm -rf /var/lib/apt/lists/*
