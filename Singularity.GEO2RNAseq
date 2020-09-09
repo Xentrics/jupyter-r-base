@@ -30,7 +30,8 @@ From: Xentrics/jupyter-r-base:r3.6.3
 %post
 
   # to solve the "locale.Error: unsupported locale setting" error [https://stackoverflow.com/questions/14547631/python-locale-error-unsupported-locale-setting ]
-  export LC_ALL=C
+  export LC_ALL=C.UTF-8
+  export LANG=C.UTF-8
   
   # select default keyboard layout
   echo "XKBMODEL='pc105'" >> /etc/default/keyboard
@@ -67,7 +68,7 @@ From: Xentrics/jupyter-r-base:r3.6.3
   R --vanilla -e 'options("Ncpus"=10); install.packages(c("BiocManager", "devtools"), repos="https://cloud.r-project.org", Ncpus = 10)'
   
   # Install GEO2RNAseq from source
-  R --vanilla -e 'options("Ncpus"=10); devtools::install(pkg="/geo2rnaseq", dependencies=TRUE)'
+  R --vanilla -e 'options("Ncpus"=10); devtools::install_bitbucket("Xentrics/geo2rnaseq", dependencies=TRUE)'
   
   
   
