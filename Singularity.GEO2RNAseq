@@ -23,9 +23,6 @@ From: Xentrics/jupyter-r-base:r3.6.3
   export PATH=/usr/lib/rstudio-server/bin:${PATH}
   export LC_ALL=C.UTF-8
   export LANG=C.UTF-8
-  
-%files
-  /media/basti/FastData/geo2rnaseq /geo2rnaseq
 
 %post
 
